@@ -5,6 +5,7 @@ A workshop for Kubernetes beginners
 
 	- A computer
 	- Recent docker version >= 18.06 (https://store.docker.com/search?type=edition&offering=community)
+	-> Docker -> Preferences -> Enable Kubernetes -> Apply 
 	- Basic knowledge about docker
 
 ## Nodes
