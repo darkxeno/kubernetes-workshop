@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+  labels:
+    name: nodejs-service
+  
+spec:
+  type: LoadBalancer
+  ports:
+    # The port that this service should serve on.
+    - name: koa-port
+      targetPort: koa-port
+      port: 3000
+
+  selector:
+    name: nodejs-pod

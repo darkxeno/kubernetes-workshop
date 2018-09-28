@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  labels:
+    name: mongodb
+    group: databases
+    
+spec:
+  ports:
+    # The port that this service should serve on.
+    - port: 27017
+  # Label keys and values that must match in order to receive traffic for this service.
+  type: "fill me"
+  selector:
+    name: "fill me"

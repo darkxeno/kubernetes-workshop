@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: "fill me"
+  name: nodejs-deployment  
 
 spec:
   replicas: 3
@@ -10,15 +10,15 @@ spec:
 
   template:
     metadata:
-      name: "fill me" # pod name
+      name: nodejs-pod # pod name
       labels: # pod metadata for info and service targetting
-        name: "fill me"
+        name: nodejs-pod
         group: application
 
     spec:                                     
       containers:
-      - name: "fill me" # container name
-        image: "fill me" # docker url: repository, image and tag
+      - name: nodejs-container # container name
+        image: docker.io/darkxeno/nodejs-pod:0.9.0 # docker url: repository, image and tag
 
         resources: # resources requirements and limits, important for scheduling (distribution inside of the cluster)
           requests:
@@ -27,6 +27,20 @@ spec:
           limits:
             cpu: 300m
             memory: 200Mi
+
+        livenessProbe:
+          httpGet:
+            path: /api/is-alive
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 30
+
+        readinessProbe:
+          httpGet:
+            path: /api/is-ready
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10            
             
         ports:
           - name: koa-port
