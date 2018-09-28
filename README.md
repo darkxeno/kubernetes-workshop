@@ -4,10 +4,10 @@ A workshop for Kubernetes beginners
 ## Requirements
 
 - A computer
+- Basic knowledge about docker
 - Recent [docker](https://store.docker.com/search?type=edition&offering=community) version >= 18.06
 (Docker -> Preferences -> Enable Kubernetes -> Apply)
-![](/_s/_s/images/docker-setup.png)
-- Basic knowledge about docker
+![](/_s/_s/docker-setup.png)
 
 ## Nodes
 Definition: machines part of the kubernetes cluster
