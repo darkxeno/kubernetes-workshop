@@ -15,7 +15,7 @@ Definition: machines part of the kubernetes cluster
 [Documentation](https://kubernetes.io/docs/concepts/architecture/nodes/)
 
 - Master: kubernetes API server, nodes membership and metrics
-- Workers: workload placeholders (pod runners)
+- Workers: workload placeholders (container runners)
 
 ## Pods
 Definition: Set of containers running on the same IP (shared network)
@@ -29,6 +29,7 @@ Usage: application layer
 	- [Deployment Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 ```
 kubectl apply -f nodejs-deployment.yaml
+kubectl get pods
 ```
 	
 - Scale in / out the deployment, delete / fail one replica pod
@@ -64,8 +65,8 @@ Usage: state layer
 
 [Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 
-- Create a statefulset with the [template](/statefulset/mongo) (Docker image: darkxeno/mongodb-statefulset:4.1.3)
-- Add a service for the statefulset
+- Create a statefulset with the [template](/statefulset/mongodb-statefulset.yaml) (Docker image: darkxeno/mongodb-statefulset:4.1.3)
+- Add a service for the statefulset, [template](/services/mongodb-service.yaml)
 
 ## Health checks (liveness and readiness)
 
@@ -75,15 +76,25 @@ Types: Readyness and liveness probes
 
 [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/)
 
-- Add a readiness healthcheck
+- Add a readiness healthcheck (check [template](/deployments/nodejs-deployment-with-health-checks.yaml))
 - Add a liveness healthcheck
-- Release a new version (rolling update to: docker.io/darkxeno/nodejs-pod:1.0.0)
+- Release a new nodejs app version (rolling update, change image to: docker.io/darkxeno/nodejs-pod:1.0.0)
 
 ## Fault tolerance (cut db services, test reconnection)
 
-- Simulate a db failure (delete service and delete pod)
+- Simulate a db failure (delete service and delete mongodb pod)
+```
+kubectl delete service ...
+kubectl delete pod ...
+```
 - See how the state of the pods changes
-- Recover the db
+```
+watch -n 1 kubectl get pods
+```
+- Recover the db service
+```
+kubectl apply -f [service.yaml]
+```
 
 ## [Extra] Secrets and Configmaps
 
