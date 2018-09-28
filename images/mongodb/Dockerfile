@@ -1,0 +1,8 @@
+#FROM mongo:4.1.3
+FROM mongo:3.6.8
+
+COPY . .
+
+ENV MONGO_SERVER= MONGO_PORT=27017 MONGO_DATABASE=test
+
+ENTRYPOINT [ "/entrypoint.sh" ]

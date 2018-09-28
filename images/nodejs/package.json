@@ -1,0 +1,31 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "nodejs sample app for the kubernetes workshop",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkxeno/kubernetes-workshop.git"
+  },
+  "keywords": [
+    "nodejs",
+    "kubernetes",
+    "docker"
+  ],
+  "author": "Constantino Fernandez Traba",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/darkxeno/kubernetes-workshop/issues"
+  },
+  "homepage": "https://github.com/darkxeno/kubernetes-workshop#readme",
+  "dependencies": {
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-route": "^3.2.0",
+    "mongodb": "^3.1.6"
+  }
+}

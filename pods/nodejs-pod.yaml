@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "fill me" # pod name
+  labels: # pod metadata for info and service targetting
+    name: "fill me"
+    group: "fill me"
+
+spec:                                     
+  containers:
+  - name: "fill me" # container name
+    image: "fill me" # docker url: repository, image and tag
+
+    resources: # resources requirements and limits, important for scheduling (distribution inside of the cluster)
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        cpu: 300m
+        memory: 200Mi
+        
+    ports:
+      - name: koa-port
+        containerPort: 3000
+
+    env:
+      - name: PORT
+        value: '3000'

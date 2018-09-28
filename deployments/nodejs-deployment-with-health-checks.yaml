@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "fill me"
+
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+
+  template:
+    metadata:
+      name: "fill me" # pod name
+      labels: # pod metadata for info and service targetting
+        name: "fill me"
+        group: application
+
+    spec:                                     
+      containers:
+      - name: "fill me" # container name
+        image: "fill me" # docker url: repository, image and tag
+
+        livenessProbe: # detects if the process is alive and restarts it after 
+          httpGet:
+            path: "fill me" 
+            port: "fill me with a number" 
+          successThreshold: 1 # default value
+          failureThreshold: 3 # default value
+          initialDelaySeconds: "fill me with a number" 
+          periodSeconds: "fill me with a number" 
+
+        readinessProbe:
+          httpGet:
+            path: "fill me" 
+            port: "fill me with a number" 
+          successThreshold: 1 # default value
+          failureThreshold: 3 # default value            
+          initialDelaySeconds: "fill me with a number" 
+          periodSeconds: "fill me with a number"           
+
+        resources: # resources requirements and limits, important for scheduling (distribution inside of the cluster)
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 300m
+            memory: 200Mi
+            
+        ports:
+          - name: koa-port
+            containerPort: 3000
+
+        env:
+          - name: PORT
+            value: '3000'
