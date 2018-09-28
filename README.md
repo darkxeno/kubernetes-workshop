@@ -65,8 +65,11 @@ Usage: state layer
 
 [Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 
-- Create a statefulset with the [template](/statefulset/mongodb-statefulset.yaml) (Docker image: darkxeno/mongodb-statefulset:4.1.3)
-- Add a service for the statefulset, [template](/services/mongodb-service.yaml)
+- Create a statefulset + service with the [template](/statefulset/mongodb-statefulset.yaml) (Docker image: darkxeno/mongodb-statefulset:4.1.3)
+``` 
+kubectl get statefulsets
+kubectl get pods
+```
 
 ## Health checks (liveness and readiness)
 
@@ -78,7 +81,11 @@ Types: Readyness and liveness probes
 
 - Add a readiness healthcheck (check [template](/deployments/nodejs-deployment-with-health-checks.yaml))
 - Add a liveness healthcheck
-- Release a new nodejs app version (rolling update, change image to: docker.io/darkxeno/nodejs-pod:1.0.0)
+- Release a new nodejs app version (change image on the template to: docker.io/darkxeno/nodejs-pod:1.0.0)
+- See how the rolling update works and the how the state of the pods changes
+```
+watch -n 1 kubectl get pods
+```
 
 ## Fault tolerance (cut db services, test reconnection)
 
@@ -96,10 +103,20 @@ watch -n 1 kubectl get pods
 kubectl apply -f [service.yaml]
 ```
 
+## [Extra] Statefulset persistent storage
+
+- Have a look on the volumeClaimTemplates and volumeMounts fields on the [template](/statefulsets/mongodb-statefulset-with-persistent-storage.yaml)
+- Deploy the template and check the volumes
+```
+kubectl get pvc
+kubectl get pv
+```
+
 ## [Extra] Secrets and Configmaps
 
-- Create a secret for DB authentication
-- Configure the pods to use the secret
+- Create a configmap for DB configuration
+- Configure the pods to use the configmap
+- [exercise] create a secret for db authentication
 
 ## [Extra] Kubernetes dashboard
 
