@@ -37,7 +37,10 @@ kubectl get pods
 kubectl scale deployment nodejs-deployment --replicas=0
 kubectl scale deployment nodejs-deployment --replicas=6
 ```
-
+- Delete one pod
+```
+kubectl delete pod ...
+```
 
 ## Services
 Definition: A way to expose endpoints and make them discoverable (internally / externally, "like" a round robin DNS entry)
@@ -55,6 +58,11 @@ kubectl get endpoints
 - Consume the service
 ```
 curl -X POST 127.0.0.1:3000 -H "Content-Type:application/json" -d '{"test":true}'
+open browser at:  localhost:3000
+```
+- Fail one pod using the service (end process)
+```
+curl localhost:3000/exit
 ```
 
 ## Statefulsets
@@ -86,9 +94,14 @@ Types: Readyness and liveness probes
 ```
 watch -n 1 kubectl get pods
 ```
+- Disconnect one pod from mongodb and see how the status changes
+```
+curl localhost:3000/disconnect
+```
 
-## Fault tolerance (cut db services, test reconnection)
+## Fault tolerance
 
+- Release a new nodejs app version (change image on the template to: docker.io/darkxeno/nodejs-pod:1.1.0) supports auto-reconnect
 - Simulate a db failure (delete service and delete mongodb pod)
 ```
 kubectl delete service ...
@@ -97,16 +110,22 @@ kubectl delete pod ...
 - See how the state of the pods changes
 ```
 watch -n 1 kubectl get pods
+- Test service downtime
+```
+curl localhost:3000
+```
 ```
 - Recover the db service
 ```
-kubectl apply -f [service.yaml]
+kubectl apply -f [mongodb-xxx.yaml]
 ```
 
 ## [Extra] Statefulset persistent storage
 
 - Have a look on the volumeClaimTemplates and volumeMounts fields on the [template](/statefulsets/mongodb-statefulset-with-persistent-storage.yaml)
 - Deploy the template and check the volumes
+
+NOTE: statefulsets needs to be delete in order to be updated
 ```
 kubectl get pvc
 kubectl get pv
@@ -114,11 +133,26 @@ kubectl get pv
 
 ## [Extra] Secrets and Configmaps
 
+NOTE: statefulsets needs to be delete in order to be updated
 - Create a configmap for DB configuration
-- Configure the pods to use the configmap
+```
+kubectl apply -f ./configmaps/mongodb-configmap.yaml
+```
+- Configure the pods to use the configmap [template](/statefulsets/mongodb-with-configmap.yaml)
+```
+kubectl apply -f ./statefulsets/mongodb-statefulset-with-config-map.yaml
+```
+- Verify the config on the pod
+```
+kubectl exec -ti mongodb-0 cat /data/configdb/mongo.conf
+```
 - [exercise] create a secret for db authentication
 
 ## [Extra] Kubernetes dashboard
 
 - Deploy the kubernetes dashboard
-- Navigate...
+```
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl proxy
+```
+- Navigate to [dashboard](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)

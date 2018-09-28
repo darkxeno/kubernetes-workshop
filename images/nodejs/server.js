@@ -54,7 +54,8 @@ app.use(router.get('/is-ready', async(ctx) =>{
       } else {
         ctx.status = 400;
         ctx.message = 'Mongodb status not OK';
-        ctx.body = { isReady: false, status: filteredStatus };      
+        ctx.body = { isReady: false, status: filteredStatus }; 
+        mongo.connect();     
       }
 
     } catch (error){
@@ -62,12 +63,14 @@ app.use(router.get('/is-ready', async(ctx) =>{
       ctx.status = 400;
       ctx.message = error.message;
       ctx.body = { isReady: false, error: error }; 
+      mongo.connect();
     }
 
   } else {
     ctx.status = 400;
     ctx.message = 'Not connected to mongodb';
     ctx.body = { isReady: false, error: 'Not connected to mongodb' };
+    mongo.connect();
   }
 }));
 

@@ -18,7 +18,7 @@ spec:
     spec:                                     
       containers:
       - name: nodejs-container # container name
-        image: docker.io/darkxeno/nodejs-pod:0.9.0 # docker url: repository, image and tag
+        image: docker.io/darkxeno/nodejs-pod:1.1.0 # docker url: repository, image and tag
 
         resources: # resources requirements and limits, important for scheduling (distribution inside of the cluster)
           requests:
@@ -30,17 +30,17 @@ spec:
 
         livenessProbe:
           httpGet:
-            path: /api/is-alive
+            path: /is-alive
             port: 3000
           initialDelaySeconds: 5
-          periodSeconds: 30
+          periodSeconds: 5
 
         readinessProbe:
           httpGet:
-            path: /api/is-ready
+            path: /is-ready
             port: 3000
           initialDelaySeconds: 5
-          periodSeconds: 10            
+          periodSeconds: 5            
             
         ports:
           - name: koa-port

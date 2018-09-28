@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mongodb
+    group: databases
+  name: mongodb
+spec:
+  ports:
+    # The port that this service should serve on.
+    - port: 27017
+  # Label keys and values that must match in order to receive traffic for this service.
+  clusterIP: None
+  selector:
+    name: mongodb
+
+---
+
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: mongodb
+  
+spec:
+  serviceName: "mongodb"
+  replicas: 1
+
+  template:
+    metadata:
+      name: mongodb
+      labels:
+        name: mongodb
+        group: databases
+
+    spec:
+
+      containers:
+      - name: mongodb
+        image: docker.io/darkxeno/mongodb-statefulset:4.1.3
+        imagePullPolicy: Always
+
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+
+        ports:
+          - containerPort: 27017
+
+        volumeMounts:
+        - mountPath: /data/configdb
+          name: mongodb-configmap
+
+      volumes:
+      - name: mongodb-configmap
+        configMap:
+          name: mongodb-configmap
