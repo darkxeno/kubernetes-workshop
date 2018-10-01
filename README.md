@@ -73,7 +73,7 @@ Usage: state layer
 
 [Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 
-- Create a statefulset + service with the [template](/statefulset/mongodb-statefulset.yaml) (Docker image: darkxeno/mongodb-statefulset:4.1.3)
+- Create a statefulset + service with the [template](/statefulsets/mongodb-statefulset.yaml) (Docker image: darkxeno/mongodb-statefulset:4.1.3)
 ``` 
 kubectl get statefulsets
 kubectl get pods
