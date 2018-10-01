@@ -159,3 +159,5 @@ kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/
 kubectl proxy
 ```
 - Navigate to [dashboard](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
+
+- Select the kubeconfig file at `~/.kube/config` or SKIP
