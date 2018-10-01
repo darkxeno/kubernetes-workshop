@@ -30,6 +30,8 @@ Usage: application layer
 ```
 # kubectl apply -f manifest.yaml (creates or updates kubernetes entities)
 # kubectl create -f manifest.yaml (creates kubernetes entities)
+# kubectl describe resourceType resourceId (gets all the info about an entity / helps on troubleshooting ) ex: kubectl describe pod nodejs-pod-xxxx
+
 kubectl apply -f nodejs-deployment.yaml
 kubectl get pods
 ```
@@ -141,7 +143,7 @@ NOTE: statefulsets needs to be delete in order to be updated
 ```
 kubectl apply -f ./configmaps/mongodb-configmap.yaml
 ```
-- Configure the pods to use the configmap [template](/statefulsets/mongodb-with-configmap.yaml)
+- Configure the pods to use the configmap [template](/statefulsets/mongodb-with-config-map.yaml)
 ```
 kubectl apply -f ./statefulsets/mongodb-statefulset-with-config-map.yaml
 ```
