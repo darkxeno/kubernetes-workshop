@@ -42,7 +42,7 @@ spec:
 
       containers:
       - name: mongodb
-        image: docker.io/darkxeno/mongodb-statefulset:4.1.3
+        image: docker.io/darkxeno/mongodb-statefulset:3.6.8
         imagePullPolicy: Always
         resources:
           requests:

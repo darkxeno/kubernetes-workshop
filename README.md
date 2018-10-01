@@ -28,6 +28,8 @@ Usage: application layer
 	- Docker image: [docker.io/darkxeno/nodejs-pod:0.9.0](https://hub.docker.com/r/darkxeno/nodejs-pod/tags/)
 	- [Deployment Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 ```
+# kubectl apply -f manifest.yaml (creates or updates kubernetes entities)
+# kubectl create -f manifest.yaml (creates kubernetes entities)
 kubectl apply -f nodejs-deployment.yaml
 kubectl get pods
 ```
@@ -79,7 +81,7 @@ kubectl get statefulsets
 kubectl get pods
 ```
 
-## Health checks (liveness and readiness)
+## Health checks
 
 Definition: A way to verify and control the correct working status of a pod
 
@@ -110,6 +112,7 @@ kubectl delete pod ...
 - See how the state of the pods changes
 ```
 watch -n 1 kubectl get pods
+```
 - Test service downtime
 ```
 curl localhost:3000
@@ -131,8 +134,9 @@ kubectl get pvc
 kubectl get pv
 ```
 
-## [Extra] Secrets and Configmaps
+## [Extra] Configmaps and Secrets
 
+Definition: tools to provide additional configuration or credentials to the pods
 NOTE: statefulsets needs to be delete in order to be updated
 - Create a configmap for DB configuration
 ```
