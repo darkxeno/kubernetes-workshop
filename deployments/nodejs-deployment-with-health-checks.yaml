@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: "fill me"
+  name: "FILL ME"
 
 spec:
   replicas: 3
@@ -10,33 +10,33 @@ spec:
 
   template:
     metadata:
-      name: "fill me" # pod name
+      name: "FILL ME" # pod name
       labels: # pod metadata for info and service targetting
-        name: "fill me"
+        name: "FILL ME"
         group: application
 
     spec:                                     
       containers:
-      - name: "fill me" # container name
-        image: "fill me" # docker url: repository, image and tag
+      - name: "FILL ME" # container name
+        image: "FILL ME" # docker url: repository, image and tag
 
         livenessProbe: # detects if the process is alive and restarts it after 
           httpGet:
-            path: "fill me" 
-            port: "fill me with a number" 
+            path: "FILL ME" 
+            port: "FILL ME WITH A NUMBER" 
           successThreshold: 1 # default value
           failureThreshold: 3 # default value
-          initialDelaySeconds: "fill me with a number" 
-          periodSeconds: "fill me with a number" 
+          initialDelaySeconds: "FILL ME WITH A NUMBER" 
+          periodSeconds: "FILL ME WITH A NUMBER" 
 
         readinessProbe:
           httpGet:
-            path: "fill me" 
-            port: "fill me with a number" 
+            path: "FILL ME" 
+            port: "FILL ME WITH A NUMBER" 
           successThreshold: 1 # default value
           failureThreshold: 3 # default value            
-          initialDelaySeconds: "fill me with a number" 
-          periodSeconds: "fill me with a number"           
+          initialDelaySeconds: "FILL ME WITH A NUMBER" 
+          periodSeconds: "FILL ME WITH A NUMBER"           
 
         resources: # resources requirements and limits, important for scheduling (distribution inside of the cluster)
           requests:

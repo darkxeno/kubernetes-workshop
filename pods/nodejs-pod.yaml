@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "fill me" # pod name
+  name: "FILL ME" # pod name
   labels: # pod metadata for info and service targetting
-    name: "fill me"
-    group: "fill me"
+    name: "FILL ME"
+    group: "FILL ME"
 
 spec:                                     
   containers:
-  - name: "fill me" # container name
-    image: "fill me" # docker url: repository, image and tag
+  - name: "FILL ME" # container name
+    image: "FILL ME" # docker url: repository, image and tag
 
     resources: # resources requirements and limits, important for scheduling (distribution inside of the cluster)
       requests:

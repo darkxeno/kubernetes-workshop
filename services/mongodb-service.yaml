@@ -5,12 +5,12 @@ metadata:
   labels:
     name: mongodb
     group: databases
-    
+
 spec:
   ports:
     # The port that this service should serve on.
     - port: 27017
   # Label keys and values that must match in order to receive traffic for this service.
-  type: "fill me"
+  type: "FILL ME"
   selector:
-    name: "fill me"
+    name: "FILL ME"

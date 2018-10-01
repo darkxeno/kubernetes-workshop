@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "fill me"
+  name: "FILL ME"
   labels:
-    name: "fill me"
+    name: "FILL ME"
   
 spec:
-  type: "fill me" # one of ClusterIP, LoadBalancer, NodePort, ExternalName
+  type: "FILL ME" # one of ClusterIP, LoadBalancer, NodePort, ExternalName
   ports:
-    - name: "fill me" # name of the port
-      targetPort: "fill me" # name of the port on the target pod
-      port: "fill me" # The port that this service should serve on.
+    - name: "FILL ME" # name of the port
+      targetPort: "FILL ME" # name of the port on the target pod
+      port: "FILL ME WITH A NUMBER" # The port that this service should serve on.
 
   selector:
-    name: "fill me" # name of the targetted pod
+    name: "FILL ME" # name of the targetted pod
