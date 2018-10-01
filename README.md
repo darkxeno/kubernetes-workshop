@@ -117,7 +117,6 @@ watch -n 1 kubectl get pods
 ```
 curl localhost:3000
 ```
-```
 - Recover the db service
 ```
 kubectl apply -f [mongodb-xxx.yaml]
