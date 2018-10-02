@@ -34,6 +34,7 @@ Usage: application layer
 
 kubectl apply -f nodejs-deployment.yaml
 kubectl get pods
+kubectl logs nodejs-deployment-xxx
 ```
 	
 - Scale in / out the deployment, delete / fail one replica pod
@@ -51,7 +52,17 @@ Definition: A way to expose endpoints and make them discoverable (internally / e
 
 [Documentation](https://kubernetes.io/docs/concepts/services-networking/service/)
 
-Types: ClusterIP, NodePort, LoadBalancer, Headless, ExternalName, ...
+*TYPES* 
+
+ClusterIP: the port is open through an virtual ip that allows internal k8s access
+
+NodePort: the same static port is open on all the nodes, allows access from k8s or node processes
+
+LoadBalancer: the port is open and balanced to all the nodes to allow external access
+
+Headless: same as clusterIP by without IP, only DNS entry
+
+ExternalName: only a DNS entry is added to the service (CNAME)
 
 - Create a service using the [template](/services/nodejs-service.yaml)
 - Check services / endpoints
