@@ -102,8 +102,8 @@ Types: Readyness and liveness probes
 
 [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/)
 
-- Add a readiness healthcheck (check [template](/deployments/nodejs-deployment-with-health-checks.yaml))
-- Add a liveness healthcheck
+- Add a readiness healthcheck [GET /is-ready] (check [template](/deployments/nodejs-deployment-with-health-checks.yaml))
+- Add a liveness healthcheck [GET /is-alive]
 - Release a new nodejs app version (change image on the template to: docker.io/darkxeno/nodejs-pod:1.0.0)
 - See how the rolling update works and the how the state of the pods changes
 ```
