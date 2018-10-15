@@ -9,6 +9,14 @@ A workshop for Kubernetes beginners
 (Docker -> Preferences -> Enable Kubernetes -> Apply)
 ![](/_s/_s/docker-setup.png)
 
+## NodeJS App Image versions
+
+*darkxeno/nodejs-pod:0.9.0* => no healthchecks
+
+*darkxeno/nodejs-pod:1.0.0* => healthchecks without db reconnect
+
+*darkxeno/nodejs-pod:1.1.0* => healthchecks with db reconnect
+
 ## Nodes
 Definition: machines part of the kubernetes cluster
 
